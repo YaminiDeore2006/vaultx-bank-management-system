@@ -1,119 +1,47 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+const otpInputs = document.querySelectorAll(".otp-input");
 
-    <head>
+otpInputs.forEach((input, index) => {
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    input.addEventListener("input", () => {
 
-    <title>VaultX Bank | OTP Verification</title>
+        if(input.value.length === 1 && index < otpInputs.length-1){
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet">
+            otpInputs[index+1].focus();
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+        }
 
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    });
 
-    </head>
+    input.addEventListener("keydown", (e)=>{
 
-    <body>
+        if(e.key==="Backspace" && input.value==="" && index>0){
 
-    <div class="login-page">
+            otpInputs[index-1].focus();
 
-        <!-- LEFT PANEL -->
+        }
 
-        <div class="login-left">
+    });
 
-            <div class="brand">
+});
 
-                <div class="bank-logo">
-                    <i class="fa-solid fa-building-columns"></i>
-                </div>
+let time = 60;
 
-                <h1>VaultX Bank</h1>
+const timer = document.querySelector(".otp-timer");
 
-                <h3>OTP Verification</h3>
+const countdown = setInterval(()=>{
 
-                <p>
-                    Enter the 6-digit OTP sent to your registered email address.
-                </p>
+    let seconds = time < 10 ? "0"+time : time;
 
-            </div>
+    timer.innerHTML = "00 : " + seconds;
 
-            <div class="illustration">
+    time--;
 
-                <img th:src="@{/images/banking-login.svg}" alt="Bank">
+    if(time < 0){
 
-            </div>
+        clearInterval(countdown);
 
-        </div>
+        timer.innerHTML = "OTP Expired";
 
-        <!-- RIGHT PANEL -->
+    }
 
-        <div class="login-right">
-
-            <div class="login-card">
-
-                <div class="card-header">
-
-                    <h2>Verify OTP</h2>
-
-                    <p>Enter the verification code</p>
-
-                </div>
-
-                <form>
-
-                    <div class="otp-container">
-
-                        <input class="otp-input" maxlength="1">
-                            <input class="otp-input" maxlength="1">
-                                <input class="otp-input" maxlength="1">
-                                    <input class="otp-input" maxlength="1">
-                                        <input class="otp-input" maxlength="1">
-                                            <input class="otp-input" maxlength="1">
-
-                    </div>
-
-                    <div class="otp-timer">
-
-                        00:60
-
-                    </div>
-
-                    <button
-                        type="submit"
-                        class="login-btn">
-
-                        Verify OTP
-
-                    </button>
-
-                </form>
-
-                <div class="register-link">
-
-                    <a href="#">Resend OTP</a>
-
-                </div>
-
-                <div class="register-link">
-
-                    <a th:href="@{/}">
-                        ← Back to Login
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <script th:src="@{/js/otp.js}"></script>
-
-    </body>
-</html>
+},1000);

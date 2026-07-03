@@ -1,0 +1,67 @@
+/* ================= OTP ================= */
+
+body{
+    background:red !important;
+}
+
+.otp-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    margin:25px 0;
+}
+
+.otp-input{
+
+    width:60px !important;
+    height:60px !important;
+    flex:none;
+    border:2px solid #d1d5db;
+    border-radius:12px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    outline:none;
+}
+
+.otp-input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 10px rgba(37,99,235,.2);
+}
+
+.otp-timer{
+    text-align:center;
+    color:#2563eb;
+    font-weight:700;
+    margin-bottom:20px;
+    font-size:18px;
+}
+
+.register-link{
+    margin-top:20px;
+    text-align:center;
+}
+
+.register-link a{
+    color:#2563eb !important;
+    text-decoration:none;
+    font-weight:600;
+    font-size:16px;
+}
+
+.register-link a:hover{
+    text-decoration:underline;
+    color:#0F4C81 !important;
+}
+
+.otp-input:hover{
+    border-color:#2563eb;
+    transform:translateY(-2px);
+}
+
+.otp-input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 15px rgba(37,99,235,.25);
+    transform:scale(1.05);
+}
