@@ -1,0 +1,369 @@
+/* ==========================
+   LOGIN PAGE
+========================== */
+
+body{
+    margin:0;
+    padding:0;
+    font-family:'Inter',sans-serif;
+    background:#f4f7fb;
+}
+
+.login-page{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+/* LEFT */
+
+.login-left{
+    background:linear-gradient(135deg,#0F4C81,#2563eb);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:60px;
+    color:#fff;
+    text-align:center;
+}
+
+.bank-logo{
+    width:90px;
+    height:90px;
+    background:#fff;
+    color:#0F4C81;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:38px;
+    margin-bottom:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+.brand h1{
+    font-size:48px;
+    margin:0;
+    font-weight:700;
+}
+
+.brand h3{
+    margin-top:10px;
+    font-weight:500;
+}
+
+.brand p{
+    width:430px;
+    max-width:100%;
+    margin-top:25px;
+    line-height:1.8;
+    opacity:.9;
+}
+
+.illustration{
+    margin-top:50px;
+}
+
+.illustration img{
+    width:430px;
+    max-width:100%;
+}
+
+/* RIGHT */
+
+.login-right{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    background:#f7f9fc;
+}
+
+.login-card{
+    width:100%;
+    max-width:470px;
+    background:#fff;
+    border-radius:22px;
+    padding:50px;
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+}
+
+.card-header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.card-header h2{
+    color:#0F4C81;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.card-header p{
+    color:#777;
+}
+
+/* INPUTS */
+
+.input-group{
+    margin-bottom:22px;
+}
+
+.input-group label{
+    display:block;
+    font-weight:600;
+    margin-bottom:8px;
+    color:#374151;
+}
+
+.input-field{
+    display:flex;
+    align-items:center;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    background:#fff;
+    transition:.3s;
+}
+
+.input-field:focus-within{
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+}
+
+.input-field i:first-child{
+    width:55px;
+    text-align:center;
+    color:#6b7280;
+}
+
+.input-field input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:16px 10px;
+    font-size:15px;
+    background:transparent;
+}
+
+.input-field input::placeholder{
+    color:#9ca3af;
+}
+
+.toggle-password{
+    padding-right:18px;
+    cursor:pointer;
+    color:#6b7280;
+}
+
+.toggle-password:hover{
+    color:#2563eb;
+}
+
+/* ==========================
+   LOGIN OPTIONS
+========================== */
+
+.login-options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:20px 0 30px;
+}
+
+.remember{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    font-size:14px;
+    color:#374151;
+    font-weight:500;
+}
+
+.remember input{
+    width:17px;
+    height:17px;
+    accent-color:#0F4C81;
+    cursor:pointer;
+}
+
+.login-options a{
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:600;
+    transition:.3s;
+}
+
+.login-options a:hover{
+    color:#0F4C81;
+    text-decoration:underline;
+}
+
+/* ==========================
+   LOGIN BUTTON
+========================== */
+
+.login-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#0F4C81,#2563eb);
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .3s ease;
+    box-shadow:0 10px 25px rgba(37,99,235,.25);
+}
+
+.login-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 35px rgba(37,99,235,.35);
+}
+
+.login-btn:active{
+    transform:scale(.98);
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+.footer-text{
+    text-align:center;
+    margin-top:35px;
+    color:#9ca3af;
+    font-size:14px;
+    letter-spacing:.5px;
+}
+
+/* ==========================
+   CARD ANIMATION
+========================== */
+
+.login-card{
+    animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ==========================
+   LEFT SIDE ANIMATION
+========================== */
+
+.bank-logo{
+    animation:float 3s ease-in-out infinite;
+}
+
+.illustration img{
+    animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+    .login-page{
+        grid-template-columns:1fr;
+    }
+
+    .login-left{
+        display:none;
+    }
+
+    .login-right{
+        padding:25px;
+    }
+
+    .login-card{
+        padding:35px;
+    }
+
+    .card-header h2{
+        font-size:28px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .login-card{
+        padding:25px;
+        border-radius:16px;
+    }
+
+    .login-options{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .bank-logo{
+        width:70px;
+        height:70px;
+        font-size:28px;
+    }
+
+    .input-field input{
+        font-size:14px;
+    }
+
+    .register-link {
+        margin-top: 20px;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .register-link a {
+        color: #2563eb !important;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+
+    .login-card {
+        overflow: visible;
+    }
+
+    .login-btn {
+        margin-bottom: 15px;
+    }
+}

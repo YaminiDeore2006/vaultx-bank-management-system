@@ -1,0 +1,44 @@
+/* ================================
+   NeoBank Design System
+================================ */
+
+:root{
+
+    /* Background */
+    --bg-color:#070B18;
+    --surface:#111827;
+    --surface-light:#1B263B;
+
+    /* Primary */
+    --primary:#3B82F6;
+    --primary-light:#60A5FA;
+
+    /* Secondary */
+    --secondary:#7C3AED;
+
+    /* Status */
+    --success:#10B981;
+    --danger:#EF4444;
+    --warning:#F59E0B;
+
+    /* Text */
+    --text:#F8FAFC;
+    --text-muted:#94A3B8;
+
+    /* Border */
+    --border:rgba(255,255,255,.08);
+
+    /* Radius */
+    --radius-sm:10px;
+    --radius-md:16px;
+    --radius-lg:22px;
+
+    /* Shadow */
+    --shadow:
+            0 10px 30px rgba(0,0,0,.35);
+
+    /* Glass */
+    --glass:
+            rgba(255,255,255,.05);
+
+}
