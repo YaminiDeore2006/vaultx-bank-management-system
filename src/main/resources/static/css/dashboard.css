@@ -1,0 +1,106 @@
+/* ==========================================
+   ADMIN DASHBOARD
+========================================== */
+
+.layout{
+    display:flex;
+    min-height:100vh;
+    background:#f4f7fb;
+}
+
+/* ==========================
+   MAIN CONTENT
+========================== */
+
+.main-content{
+    flex:1;
+    margin-left:260px;
+    padding:30px;
+    transition:.3s;
+}
+
+/* ==========================
+   TOP NAVBAR
+========================== */
+
+.top-navbar{
+    height:75px;
+    background:#fff;
+    border-radius:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+    margin-bottom:35px;
+}
+
+.navbar-left h2{
+    color:#0F4C81;
+    font-size:28px;
+    font-weight:700;
+}
+
+.navbar-right{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.navbar-right i{
+    font-size:22px;
+    color:#0F4C81;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.navbar-right i:hover{
+    transform:scale(1.1);
+}
+
+.admin-profile{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.admin-image{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#0F4C81,#2563eb);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:22px;
+}
+
+.admin-profile h4{
+    margin:0;
+    color:#0F4C81;
+    font-size:17px;
+}
+
+.admin-profile small{
+    color:#777;
+}
+
+/* ==========================
+   WELCOME
+========================== */
+
+.dashboard-header{
+    margin-bottom:35px;
+}
+
+.dashboard-header h1{
+    font-size:36px;
+    color:#0F4C81;
+    margin-bottom:10px;
+}
+
+.dashboard-header p{
+    color:#666;
+    font-size:16px;
+}
