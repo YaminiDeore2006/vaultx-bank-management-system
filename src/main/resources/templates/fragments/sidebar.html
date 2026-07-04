@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<aside class="sidebar" th:fragment="sidebar">
+
+    <h2>VaultX Bank</h2>
+
+    <ul>
+
+        <li><a th:href="@{/admin/dashboard}">🏠 Dashboard</a></li>
+
+        <li><a href="#">👥 Customers</a></li>
+
+        <li><a href="#">🏦 Accounts</a></li>
+
+        <li><a href="#">💳 Transactions</a></li>
+
+        <li><a href="#">📊 Reports</a></li>
+
+        <li><a th:href="@{/}">🚪 Logout</a></li>
+
+    </ul>
+
+</aside>
+
+</body>
+
+</html>
