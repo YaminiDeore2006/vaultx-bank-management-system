@@ -12,7 +12,7 @@
           rel="stylesheet">
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
@@ -26,17 +26,76 @@
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <div class="main-content">
 
-        <h1>Welcome Admin 👋</h1>
+        <!-- Navbar -->
+        <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-        <p>
-            Welcome to VaultX Bank Management System.
-        </p>
+        <!-- Welcome Section -->
+        <section class="dashboard-header">
 
-    </main>
+            <div>
+
+                <h1>Welcome Back, Admin 👋</h1>
+
+                <p>
+                    Manage customers, accounts and transactions from one place.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Statistics Cards -->
+        <section class="dashboard-cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-users"></i>
+
+                <h3>Total Customers</h3>
+
+                <h2>245</h2>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-building-columns"></i>
+
+                <h3>Total Accounts</h3>
+
+                <h2>389</h2>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-wallet"></i>
+
+                <h3>Total Balance</h3>
+
+                <h2>₹82,50,000</h2>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-money-bill-transfer"></i>
+
+                <h3>Transactions Today</h3>
+
+                <h2>42</h2>
+
+            </div>
+
+        </section>
+
+    </div>
 
 </div>
+
+<script th:src="@{/js/dashboard.js}"></script>
 
 </body>
 

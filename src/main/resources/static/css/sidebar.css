@@ -1,0 +1,51 @@
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:260px;
+    min-height:100vh;
+    background:linear-gradient(180deg,#0F4C81,#2563eb);
+    color:white;
+    padding:30px 20px;
+    position:fixed;
+    left:0;
+    top:0;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:28px;
+    font-weight:700;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    margin:18px 0;
+}
+
+.sidebar a{
+    color:white;
+    text-decoration:none;
+    display:block;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:.3s;
+    font-size:16px;
+    font-weight:500;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,.15);
+    transform:translateX(6px);
+}
+
+.main-content{
+    margin-left:260px;
+    padding:40px;
+}
