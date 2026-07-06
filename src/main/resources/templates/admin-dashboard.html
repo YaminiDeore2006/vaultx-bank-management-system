@@ -2,101 +2,65 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>VaultX Bank | Admin Dashboard</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+    <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
-
 </head>
 
-<body>
+<body class="dashboard-body">
 
 <div class="layout">
 
-    <!-- Sidebar -->
-    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+    <!-- SIDEBAR -->
+    <div th:replace="fragments/sidebar :: sidebar"></div>
 
-    <!-- Main Content -->
+    <!-- MAIN CONTENT -->
     <div class="main-content">
 
-        <!-- Navbar -->
-        <div th:replace="~{fragments/navbar :: navbar}"></div>
+        <!-- TOP NAVBAR -->
+        <div class="top-navbar">
+            <h3>Admin Dashboard</h3>
+        </div>
 
-        <!-- Welcome Section -->
-        <section class="dashboard-header">
-
-            <div>
-
-                <h1>Welcome Back, Admin 👋</h1>
-
-                <p>
-                    Manage customers, accounts and transactions from one place.
-                </p>
-
-            </div>
-
-        </section>
-
-        <!-- Statistics Cards -->
-        <section class="dashboard-cards">
+        <!-- DASHBOARD CARDS -->
+        <div class="dashboard-cards">
 
             <div class="card">
-
-                <i class="fa-solid fa-users"></i>
-
-                <h3>Total Customers</h3>
-
-                <h2>245</h2>
-
+                <h3><i class="fa-solid fa-users"></i> Customers</h3>
+                <p th:text="${dashboard.totalCustomers}"></p>
             </div>
 
             <div class="card">
-
-                <i class="fa-solid fa-building-columns"></i>
-
-                <h3>Total Accounts</h3>
-
-                <h2>389</h2>
-
+                <h3><i class="fa-solid fa-building-columns"></i> Accounts</h3>
+                <p th:text="${dashboard.totalAccounts}"></p>
             </div>
 
             <div class="card">
-
-                <i class="fa-solid fa-wallet"></i>
-
-                <h3>Total Balance</h3>
-
-                <h2>₹82,50,000</h2>
-
+                <h3><i class="fa-solid fa-indian-rupee-sign"></i> Balance</h3>
+                <p>₹<span th:text="${dashboard.totalBalance}"></span></p>
             </div>
 
             <div class="card">
-
-                <i class="fa-solid fa-money-bill-transfer"></i>
-
-                <h3>Transactions Today</h3>
-
-                <h2>42</h2>
-
+                <h3><i class="fa-solid fa-arrow-right-arrow-left"></i> Transactions</h3>
+                <p th:text="${dashboard.totalTransactions}"></p>
             </div>
 
-        </section>
+        </div>
 
     </div>
-
 </div>
 
 <script th:src="@{/js/dashboard.js}"></script>
 
 </body>
-
 </html>

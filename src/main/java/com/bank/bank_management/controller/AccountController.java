@@ -8,10 +8,12 @@ import com.bank.bank_management.entity.Transaction;
 import com.bank.bank_management.response.ApiResponse;
 import com.bank.bank_management.service.AccountService;
 import com.bank.bank_management.service.TransactionService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.domain.Sort;
+
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping("/api/accounts")
 public class AccountController {
 
-    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
+    private static final Logger logger =
+            LoggerFactory.getLogger(AccountController.class);
 
     @Autowired
     private AccountService accountService;
@@ -33,7 +36,7 @@ public class AccountController {
     private TransactionService transactionService;
 
     // =========================
-    // CREATE ACCOUNT (FIXED)
+    // CREATE ACCOUNT
     // =========================
     @PostMapping
     public ResponseEntity<ApiResponse> createAccount(@Valid @RequestBody AccountDTO dto) {
@@ -49,19 +52,23 @@ public class AccountController {
     // GET ALL ACCOUNTS
     // =========================
     @GetMapping
-    public List<AccountDTO> getAllAccounts() {
+    public ResponseEntity<ApiResponse> getAllAccounts() {
 
-        return accountService.getAllAccounts()
+        List<AccountDTO> accounts = accountService.getAllAccounts()
                 .stream()
                 .map(accountService::mapToDTO)
                 .toList();
+
+        return ResponseEntity.ok(
+                new ApiResponse("Accounts fetched successfully", accounts, 200)
+        );
     }
 
     // =========================
-// GET ALL ACCOUNTS WITH PAGINATION & SORTING
-// =========================
+    // PAGINATION + SORTING
+    // =========================
     @GetMapping("/page")
-    public Page<AccountDTO> getAccountsWithPagination(
+    public ResponseEntity<ApiResponse> getAccountsWithPagination(
 
             @PageableDefault(
                     page = 0,
@@ -72,88 +79,110 @@ public class AccountController {
 
         logger.info("Fetching accounts with pagination");
 
-        return accountService.getAccounts(pageable)
+        Page<AccountDTO> page = accountService.getAccounts(pageable)
                 .map(accountService::mapToDTO);
+
+        return ResponseEntity.ok(
+                new ApiResponse("Paged accounts fetched", page, 200)
+        );
     }
 
     // =========================
     // GET ACCOUNT BY ID
     // =========================
     @GetMapping("/{id}")
-    public Account getAccountById(@PathVariable Long id) {
-        return accountService.getAccountById(id);
+    public ResponseEntity<ApiResponse> getAccountById(@PathVariable Long id) {
+
+        Account account = accountService.getAccountById(id);
+
+        return ResponseEntity.ok(
+                new ApiResponse("Account fetched", account, 200)
+        );
     }
 
     // =========================
     // UPDATE ACCOUNT
     // =========================
     @PutMapping("/{id}")
-    public Account updateAccount(@PathVariable Long id,
-                                 @RequestBody Account account) {
+    public ResponseEntity<ApiResponse> updateAccount(@PathVariable Long id,
+                                                     @RequestBody Account account) {
 
-        return accountService.updateAccount(id, account);
+        Account updated = accountService.updateAccount(id, account);
+
+        return ResponseEntity.ok(
+                new ApiResponse("Account updated successfully", updated, 200)
+        );
     }
 
     // =========================
     // DELETE ACCOUNT
     // =========================
     @DeleteMapping("/{id}")
-    public String deleteAccount(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse> deleteAccount(@PathVariable Long id) {
 
         accountService.deleteAccount(id);
-        return "Account Deleted Successfully";
+
+        return ResponseEntity.ok(
+                new ApiResponse("Account deleted successfully", null, 200)
+        );
     }
 
     // =========================
     // DEPOSIT
     // =========================
     @PutMapping("/{id}/deposit")
-    public ApiResponse deposit(@PathVariable Long id,
-                               @RequestParam double amount) {
+    public ResponseEntity<ApiResponse> deposit(@PathVariable Long id,
+                                               @RequestParam double amount) {
 
         Account account = accountService.deposit(id, amount);
 
-        return new ApiResponse("Deposit successful", account, 200);
+        return ResponseEntity.ok(
+                new ApiResponse("Deposit successful", account, 200)
+        );
     }
 
     // =========================
     // WITHDRAW
     // =========================
     @PutMapping("/{id}/withdraw")
-    public ApiResponse withdraw(@PathVariable Long id,
-                                @RequestParam double amount) {
+    public ResponseEntity<ApiResponse> withdraw(@PathVariable Long id,
+                                                @RequestParam double amount) {
 
         Account account = accountService.withdraw(id, amount);
 
-        return new ApiResponse("Withdraw successful", account, 200);
+        return ResponseEntity.ok(
+                new ApiResponse("Withdraw successful", account, 200)
+        );
     }
 
     // =========================
     // TRANSACTIONS
     // =========================
     @GetMapping("/{accountId}/transactions")
-    public ApiResponse getTransactions(@PathVariable Long accountId) {
+    public ResponseEntity<ApiResponse> getTransactions(@PathVariable Long accountId) {
 
-        List<Transaction> transactions = transactionService.getTransactions(accountId);
+        List<Transaction> transactions =
+                transactionService.getTransactions(accountId);
 
-        return new ApiResponse("Transactions fetched", transactions, 200);
+        return ResponseEntity.ok(
+                new ApiResponse("Transactions fetched", transactions, 200)
+        );
     }
 
     // =========================
-// SEARCH ACCOUNT BY ACCOUNT NUMBER
-// =========================
+    // SEARCH ACCOUNT
+    // =========================
     @GetMapping("/search")
-    public ApiResponse searchAccountByAccountNumber(
+    public ResponseEntity<ApiResponse> searchAccountByAccountNumber(
             @RequestParam String accountNumber) {
 
-        logger.info("Searching account with Account Number: {}", accountNumber);
+        logger.info("Searching account: {}", accountNumber);
 
-        Account account = accountService.searchByAccountNumber(accountNumber);
+        Account account =
+                accountService.searchByAccountNumber(accountNumber);
 
-        return new ApiResponse(
-                "Account found successfully",
-                account,
-                200
+        return ResponseEntity.ok(
+                new ApiResponse("Account found successfully", account, 200)
         );
     }
 }

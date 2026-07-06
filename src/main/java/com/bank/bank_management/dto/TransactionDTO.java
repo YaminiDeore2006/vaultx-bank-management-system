@@ -6,6 +6,9 @@ public class TransactionDTO {
 
     private Long id;
 
+    @NotNull(message = "Account ID is required")
+    private Long accountId;   // ✅ ADD THIS
+
     @NotNull(message = "Amount is required")
     @Positive(message = "Amount must be greater than 0")
     private Double amount;
@@ -17,20 +20,30 @@ public class TransactionDTO {
     public TransactionDTO() {
     }
 
-    // Parameterized constructor
-    public TransactionDTO(Long id, Double amount, String type) {
+    // Updated constructor
+    public TransactionDTO(Long id, Long accountId, Double amount, String type) {
         this.id = id;
+        this.accountId = accountId;
         this.amount = amount;
         this.type = type;
     }
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getAccountId() {   // ✅ ADD THIS
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
     public Double getAmount() {

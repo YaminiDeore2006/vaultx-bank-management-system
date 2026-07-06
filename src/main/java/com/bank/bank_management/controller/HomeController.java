@@ -30,10 +30,4 @@ public class HomeController {
     public String resetPassword() {
         return "reset-password";
     }
-
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "dashboard";
-    }
-
 }

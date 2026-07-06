@@ -1,67 +1,72 @@
-/* ================= OTP ================= */
+/* ================= OTP PAGE ================= */
 
-body{
-    background:red !important;
+/* Page background fix (NO RED ANYMORE) */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: #f4f7fb;
 }
 
-.otp-container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
-    margin:25px 0;
+/* OTP container */
+.otp-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 25px 0;
 }
 
-.otp-input{
-
-    width:60px !important;
-    height:60px !important;
-    flex:none;
-    border:2px solid #d1d5db;
-    border-radius:12px;
-    text-align:center;
-    font-size:24px;
-    font-weight:bold;
-    outline:none;
+/* OTP input boxes */
+.otp-input {
+    width: 60px !important;
+    height: 60px !important;
+    flex: none;
+    border: 2px solid #d1d5db;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    outline: none;
+    transition: 0.3s;
 }
 
-.otp-input:focus{
-    border-color:#2563eb;
-    box-shadow:0 0 10px rgba(37,99,235,.2);
+/* Focus effect */
+.otp-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 15px rgba(37,99,235,.25);
+    transform: scale(1.05);
 }
 
-.otp-timer{
-    text-align:center;
-    color:#2563eb;
-    font-weight:700;
-    margin-bottom:20px;
-    font-size:18px;
+/* Hover effect */
+.otp-input:hover {
+    border-color: #2563eb;
+    transform: translateY(-2px);
 }
 
-.register-link{
-    margin-top:20px;
-    text-align:center;
+/* Timer */
+.otp-timer {
+    text-align: center;
+    color: #2563eb;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
-.register-link a{
-    color:#2563eb !important;
-    text-decoration:none;
-    font-weight:600;
-    font-size:16px;
+/* Register link */
+.register-link {
+    margin-top: 20px;
+    text-align: center;
 }
 
-.register-link a:hover{
-    text-decoration:underline;
-    color:#0F4C81 !important;
+.register-link a {
+    color: #2563eb !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
 }
 
-.otp-input:hover{
-    border-color:#2563eb;
-    transform:translateY(-2px);
-}
-
-.otp-input:focus{
-    border-color:#2563eb;
-    box-shadow:0 0 15px rgba(37,99,235,.25);
-    transform:scale(1.05);
+.register-link a:hover {
+    text-decoration: underline;
+    color: #0F4C81 !important;
 }

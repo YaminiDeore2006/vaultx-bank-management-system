@@ -2,44 +2,73 @@ package com.bank.bank_management.controller;
 
 import com.bank.bank_management.dto.TransactionDTO;
 import com.bank.bank_management.entity.Transaction;
+import com.bank.bank_management.response.ApiResponse;
 import com.bank.bank_management.service.TransactionService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/transactions")
+@RequestMapping("/api/transactions")
 public class TransactionController {
 
     @Autowired
     private TransactionService transactionService;
 
+    // =========================
+    // CREATE TRANSACTION
+    // =========================
     @PostMapping
-    public Transaction createTransaction(@RequestBody Transaction transaction) {
-        return transactionService.saveTransaction(transaction);
+    public ApiResponse createTransaction(@Valid @RequestBody TransactionDTO dto) {
+
+        Transaction transaction = transactionService.createTransaction(dto);
+
+        return new ApiResponse(
+                "Transaction created successfully",
+                transaction,
+                200
+        );
     }
 
+    // =========================
+    // GET ALL TRANSACTIONS
+    // =========================
     @GetMapping
-    public List<TransactionDTO> getAllTransactions() {
-        return transactionService.getAllTransactions()
-                .stream()
-                .map(transactionService::mapToDTO)
-                .toList();
+    public ApiResponse getAllTransactions() {
+
+        List<TransactionDTO> transactions =
+                transactionService.getAllTransactions()
+                        .stream()
+                        .map(transactionService::mapToDTO)
+                        .toList();
+
+        return new ApiResponse(
+                "All transactions fetched successfully",
+                transactions,
+                200
+        );
     }
 
+    // =========================
+    // GET TRANSACTIONS BY ACCOUNT ID
+    // =========================
     @GetMapping("/account/{accountId}")
-    public List<TransactionDTO> getTransactionsByAccount(@PathVariable Long accountId) {
-        return transactionService.getTransactions(accountId)
-                .stream()
-                .map(transactionService::mapToDTO)
-                .toList();
-    }
+    public ApiResponse getTransactionsByAccount(@PathVariable Long accountId) {
 
-    @PostMapping("/transactions")
-    public ResponseEntity<?> createTransaction(@Valid @RequestBody TransactionDTO dto) {
-        return ResponseEntity.ok("Transaction created");
+        List<TransactionDTO> transactions =
+                transactionService.getTransactions(accountId)
+                        .stream()
+                        .map(transactionService::mapToDTO)
+                        .toList();
+
+        return new ApiResponse(
+                "Account transactions fetched successfully",
+                transactions,
+                200
+        );
     }
 }

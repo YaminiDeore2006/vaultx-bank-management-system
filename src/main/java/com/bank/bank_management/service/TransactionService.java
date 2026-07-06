@@ -8,6 +8,7 @@ import com.bank.bank_management.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -19,19 +20,26 @@ public class TransactionService {
     @Autowired
     private AccountRepository accountRepository;
 
-    // Save Transaction + Update Balance
-    public Transaction saveTransaction(Transaction transaction) {
+    // CREATE TRANSACTION (FIXED)
+    public Transaction createTransaction(TransactionDTO dto) {
 
-        Account account = accountRepository.findById(transaction.getAccount().getId())
+        Account account = accountRepository.findById(dto.getAccountId())
                 .orElseThrow(() -> new RuntimeException("Account not found"));
 
-        double amount = transaction.getAmount();
+        Transaction transaction = new Transaction();
 
-        if ("DEPOSIT".equalsIgnoreCase(transaction.getType())) {
+        transaction.setAccount(account);
+        transaction.setAmount(dto.getAmount());
+        transaction.setType(dto.getType());
+        transaction.setDate(LocalDateTime.now());
+
+        double amount = dto.getAmount();
+
+        if ("DEPOSIT".equalsIgnoreCase(dto.getType())) {
             account.setBalance(account.getBalance() + amount);
         }
 
-        else if ("WITHDRAW".equalsIgnoreCase(transaction.getType())) {
+        else if ("WITHDRAW".equalsIgnoreCase(dto.getType())) {
 
             if (account.getBalance() < amount) {
                 throw new RuntimeException("Insufficient Balance");
@@ -42,29 +50,25 @@ public class TransactionService {
 
         accountRepository.save(account);
 
-        transaction.setAccount(account);
-
-        if (transaction.getDate() == null) {
-            transaction.setDate(java.time.LocalDateTime.now());
-        }
-
         return transactionRepository.save(transaction);
     }
 
-    // Get All
+    // GET ALL
     public List<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
     }
 
-    // Get by Account ID
+    // GET BY ACCOUNT
     public List<Transaction> getTransactions(Long accountId) {
         return transactionRepository.findByAccount_Id(accountId);
     }
 
     // DTO mapping
     public TransactionDTO mapToDTO(Transaction transaction) {
+
         return new TransactionDTO(
                 transaction.getId(),
+                transaction.getAccount().getId(),   // ✅ ADD THIS
                 transaction.getAmount(),
                 transaction.getType()
         );
