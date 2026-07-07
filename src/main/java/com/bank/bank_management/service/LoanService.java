@@ -21,12 +21,17 @@ public class LoanService {
     private CustomerRepository customerRepository;
 
     // =========================
-    // APPLY LOAN
-    // =========================
+// APPLY LOAN
+// =========================
     public Loan applyLoan(LoanDTO dto) {
 
         Customer customer = customerRepository.findById(dto.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+        // Check if customer already has a pending loan
+        if (loanRepository.existsByCustomer_IdAndStatus(dto.getCustomerId(), "PENDING")) {
+            throw new RuntimeException("Customer already has a pending loan request.");
+        }
 
         Loan loan = new Loan();
 

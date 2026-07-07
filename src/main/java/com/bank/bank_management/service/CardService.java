@@ -21,10 +21,16 @@ public class CardService {
     private CustomerRepository customerRepository;
 
     // Apply Card
+    // Apply Card
     public Card applyCard(CardDTO dto) {
 
         Customer customer = customerRepository.findById(dto.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+        // Check if customer already has a pending card request
+        if (cardRepository.existsByCustomer_IdAndStatus(dto.getCustomerId(), "PENDING")) {
+            throw new RuntimeException("Customer already has a pending card request.");
+        }
 
         Card card = new Card();
 
@@ -38,6 +44,7 @@ public class CardService {
 
         card.setCardNumber(cardNumber);
 
+        // Default Status
         card.setStatus("PENDING");
 
         return cardRepository.save(card);

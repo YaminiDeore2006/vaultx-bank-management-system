@@ -58,10 +58,12 @@ public class DashboardService {
 
         List<Account> accounts = accountRepository.findAll();
 
-        double totalBalance = 0;
+        double totalBalance = 0.0;
 
         for (Account account : accounts) {
-            totalBalance += account.getBalance();
+            if (account.getBalance() != null) {
+                totalBalance += account.getBalance();
+            }
         }
 
         return new DashboardDTO(

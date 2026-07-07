@@ -6,8 +6,10 @@ import com.bank.bank_management.entity.Transaction;
 import com.bank.bank_management.repository.AccountRepository;
 import com.bank.bank_management.repository.TransactionRepository;
 import com.bank.bank_management.response.ApiResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -20,6 +22,7 @@ public class TransferService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    @Transactional   //  Added
     public ApiResponse transferMoney(TransferDTO dto) {
 
         Account sender = accountRepository.findById(dto.getFromAccountId())
@@ -32,8 +35,12 @@ public class TransferService {
             throw new RuntimeException("Sender and Receiver cannot be same.");
         }
 
-        if (sender.getBalance() < dto.getAmount()) {
-            throw new RuntimeException("Insufficient Balance.");
+        double minimumBalance = 1000.0;
+
+        if ((sender.getBalance() - dto.getAmount()) < minimumBalance) {
+            throw new RuntimeException(
+                    "Minimum balance of ₹1000 must be maintained."
+            );
         }
 
         // Update Balances

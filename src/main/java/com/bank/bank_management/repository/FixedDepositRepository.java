@@ -12,4 +12,6 @@ public interface FixedDepositRepository extends JpaRepository<FixedDeposit, Long
     List<FixedDeposit> findByStatus(String status);
 
     List<FixedDeposit> findByCustomer_Id(Long customerId);
+
+    boolean existsByCustomer_IdAndStatus(Long customerId, String status);
 }

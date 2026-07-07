@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class AccountService {
@@ -29,6 +30,20 @@ public class AccountService {
 
     @Autowired
     private TransactionRepository transactionRepository;
+
+    private String generateAccountNumber() {
+
+        Random random = new Random();
+
+        String accountNumber;
+
+        do {
+            accountNumber = "VX" + (1000000000L + Math.abs(random.nextLong() % 9000000000L));
+        }
+        while (accountRepository.findByAccountNumber(accountNumber).isPresent());
+
+        return accountNumber;
+    }
 
     // ================= CREATE ACCOUNT =================
     public Account saveAccount(Account account) {
@@ -136,8 +151,12 @@ public class AccountService {
         // 🔥 NULL SAFE FIX
         double balance = account.getBalance() == null ? 0.0 : account.getBalance();
 
-        if (balance < amount) {
-            throw new InsufficientBalanceException("Insufficient balance");
+        double minimumBalance = 1000.0;
+
+        if ((balance - amount) < minimumBalance) {
+            throw new InsufficientBalanceException(
+                    "Minimum balance of ₹1000 must be maintained."
+            );
         }
 
         account.setBalance(balance - amount);
@@ -186,7 +205,7 @@ public class AccountService {
         logger.info("Creating account with Account Number: {}", dto.getAccountNumber());
         Account account = new Account();
 
-        account.setAccountNumber(dto.getAccountNumber());
+        account.setAccountNumber(generateAccountNumber());
         account.setAccountType(dto.getAccountType());
         account.setBalance(dto.getBalance());
         account.setStatus(dto.getStatus());

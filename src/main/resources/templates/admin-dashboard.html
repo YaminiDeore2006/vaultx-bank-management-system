@@ -7,11 +7,12 @@
 
     <title>VaultX Bank | Admin Dashboard</title>
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -21,46 +22,126 @@
 
 <div class="layout">
 
-    <!-- SIDEBAR -->
+    <!-- Sidebar -->
     <div th:replace="fragments/sidebar :: sidebar"></div>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main Content -->
     <div class="main-content">
 
-        <!-- TOP NAVBAR -->
+        <!-- Navbar -->
         <div class="top-navbar">
-            <h3>Admin Dashboard</h3>
+            <h2>Admin Dashboard</h2>
         </div>
 
-        <!-- DASHBOARD CARDS -->
+        <!-- ================= DASHBOARD OVERVIEW ================= -->
+
+        <h2 class="section-title">Dashboard Overview</h2>
+
         <div class="dashboard-cards">
 
             <div class="card">
                 <h3><i class="fa-solid fa-users"></i> Customers</h3>
-                <p th:text="${dashboard.totalCustomers}"></p>
+                <p th:text="${dashboard.totalCustomers}">0</p>
             </div>
 
             <div class="card">
                 <h3><i class="fa-solid fa-building-columns"></i> Accounts</h3>
-                <p th:text="${dashboard.totalAccounts}"></p>
+                <p th:text="${dashboard.totalAccounts}">0</p>
             </div>
 
             <div class="card">
-                <h3><i class="fa-solid fa-indian-rupee-sign"></i> Balance</h3>
-                <p>₹<span th:text="${dashboard.totalBalance}"></span></p>
+                <h3><i class="fa-solid fa-indian-rupee-sign"></i> Total Balance</h3>
+                <p>₹ <span th:text="${dashboard.totalBalance}">0</span></p>
             </div>
 
             <div class="card">
                 <h3><i class="fa-solid fa-arrow-right-arrow-left"></i> Transactions</h3>
-                <p th:text="${dashboard.totalTransactions}"></p>
+                <p th:text="${dashboard.totalTransactions}">0</p>
             </div>
 
         </div>
 
+        <!-- ================= BANK PRODUCTS ================= -->
+
+        <h2 class="section-title" style="margin-top:40px;">Bank Products</h2>
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+                <h3><i class="fa-solid fa-money-check-dollar"></i> Loans</h3>
+                <p th:text="${dashboard.totalLoans}">0</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fa-solid fa-credit-card"></i> Cards</h3>
+                <p th:text="${dashboard.totalCards}">0</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fa-solid fa-piggy-bank"></i> Fixed Deposits</h3>
+                <p th:text="${dashboard.totalFixedDeposits}">0</p>
+            </div>
+
+        </div>
+
+        <!-- ================= PENDING REQUESTS ================= -->
+
+        <h2 class="section-title" style="margin-top:40px;">Pending Requests</h2>
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+                <h3><i class="fa-solid fa-hourglass-half"></i> Pending Loans</h3>
+                <p th:text="${dashboard.pendingLoans}">0</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fa-solid fa-credit-card"></i> Pending Cards</h3>
+                <p th:text="${dashboard.pendingCards}">0</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fa-solid fa-piggy-bank"></i> Pending Fixed Deposits</h3>
+                <p th:text="${dashboard.pendingFixedDeposits}">0</p>
+            </div>
+
+        </div>
+
+        <!-- ================= RECENT TRANSACTIONS ================= -->
+
+        <h2 class="section-title" style="margin-top:40px;">Recent Transactions</h2>
+
+        <div class="card">
+
+            <table style="width:100%; border-collapse:collapse; text-align:center;">
+
+                <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td colspan="4" style="padding:20px;color:gray;">
+                        Recent Transactions will be displayed here.
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
     </div>
+
 </div>
 
 <script th:src="@{/js/dashboard.js}"></script>
 
 </body>
+
 </html>

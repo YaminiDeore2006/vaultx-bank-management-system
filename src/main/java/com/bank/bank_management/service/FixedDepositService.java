@@ -20,10 +20,16 @@ public class FixedDepositService {
     private CustomerRepository customerRepository;
 
     // APPLY FD
+    // APPLY FD
     public FixedDeposit applyFD(FixedDepositDTO dto) {
 
         Customer customer = customerRepository.findById(dto.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+        // Check if customer already has a pending Fixed Deposit request
+        if (fixedDepositRepository.existsByCustomer_IdAndStatus(dto.getCustomerId(), "PENDING")) {
+            throw new RuntimeException("Customer already has a pending Fixed Deposit request.");
+        }
 
         FixedDeposit fd = new FixedDeposit();
 
@@ -31,6 +37,8 @@ public class FixedDepositService {
         fd.setAmount(dto.getAmount());
         fd.setInterestRate(dto.getInterestRate());
         fd.setTenure(dto.getTenure());
+
+        // Default Status
         fd.setStatus("PENDING");
 
         return fixedDepositRepository.save(fd);

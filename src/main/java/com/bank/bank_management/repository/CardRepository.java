@@ -12,4 +12,6 @@ public interface CardRepository extends JpaRepository<Card, Long> {
     List<Card> findByStatus(String status);
 
     List<Card> findByCustomer_Id(Long customerId);
+
+    boolean existsByCustomer_IdAndStatus(Long customerId, String status);
 }
