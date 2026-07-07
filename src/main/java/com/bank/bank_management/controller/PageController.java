@@ -11,11 +11,6 @@ public class PageController {
         return "accounts";
     }
 
-    @GetMapping("/customers")
-    public String customers() {
-        return "customers";
-    }
-
     @GetMapping("/transactions-page")
     public String transactionsPage() {
         return "transactions";

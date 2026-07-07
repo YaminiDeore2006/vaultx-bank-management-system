@@ -115,3 +115,228 @@ body {
 .card:hover {
     transform: translateY(-5px);
 }
+
+/* =====================================================
+        CUSTOMER MANAGEMENT PAGE
+======================================================*/
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:30px 0 20px;
+}
+
+.page-header h2{
+    font-size:34px;
+    font-weight:700;
+    color:#1f2937;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:#fff;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+    box-shadow:0 8px 18px rgba(37,99,235,.20);
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.btn-primary i{
+    margin-right:8px;
+}
+
+/* ================= Search ================= */
+
+.search-box{
+    display:flex;
+    width:420px;
+    margin-bottom:25px;
+}
+
+.search-box input{
+    flex:1;
+    border:1px solid #d1d5db;
+    border-right:none;
+    outline:none;
+    padding:13px 16px;
+    border-radius:10px 0 0 10px;
+    font-size:15px;
+    background:#fff;
+}
+
+.search-box button{
+    width:55px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    border-radius:0 10px 10px 0;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.search-box button:hover{
+    background:#1d4ed8;
+}
+
+/* ================= Table ================= */
+
+.table-container{
+
+    background:#fff;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.customer-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.customer-table thead{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.customer-table th{
+
+    padding:18px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.customer-table td{
+
+    padding:16px 18px;
+
+    border-bottom:1px solid #edf2f7;
+
+    color:#374151;
+
+    font-size:15px;
+
+}
+
+.customer-table tbody tr{
+
+    transition:.25s;
+
+}
+
+.customer-table tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+/* ================= Buttons ================= */
+
+.edit-btn{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+    margin-right:8px;
+
+    transition:.3s;
+
+}
+
+.edit-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:scale(1.05);
+
+}
+
+.delete-btn{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#ef4444;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.delete-btn:hover{
+
+    background:#dc2626;
+
+    transform:scale(1.05);
+
+}
+
+/* ================= Responsive ================= */
+
+@media(max-width:992px){
+
+    .page-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+    .search-box{
+
+        width:100%;
+
+    }
+
+    .table-container{
+
+        overflow-x:auto;
+
+    }
+
+}
