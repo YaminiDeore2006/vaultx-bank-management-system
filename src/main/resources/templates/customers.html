@@ -6,15 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>VaultX | Customers</title>
+    <title>VaultX Bank | Customer Management</title>
 
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
 
+    <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+    <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/customers.css}">
 
 </head>
 
@@ -28,20 +32,50 @@
     <!-- Main Content -->
     <div class="main-content">
 
-        <!-- Navbar -->
+        <!-- ================= TOP NAVBAR ================= -->
+
         <div class="top-navbar">
 
-            <h2>Customer Management</h2>
+            <div>
+
+                <h2>Customer Management</h2>
+
+                <p class="navbar-subtitle">
+                    Manage all customers of VaultX Bank.
+                </p>
+
+            </div>
+
+            <div class="admin-info">
+
+                <i class="fa-solid fa-bell notification"></i>
+
+                <img
+                        src="https://ui-avatars.com/api/?name=Admin&background=2563eb&color=fff"
+                        class="admin-avatar"
+                        alt="Admin">
+
+                <span>Administrator</span>
+
+            </div>
 
         </div>
 
-        <!-- Header -->
+        <!-- ================= PAGE HEADER ================= -->
 
-        <div class="page-header">
+        <div class="customer-header">
 
-            <h2>Customers</h2>
+            <div>
 
-            <a href="#" class="btn-primary">
+                <h1>Customers</h1>
+
+                <p>
+                    View, search and manage all registered customers.
+                </p>
+
+            </div>
+
+            <a href="#" class="add-btn">
 
                 <i class="fa-solid fa-user-plus"></i>
 
@@ -51,27 +85,71 @@
 
         </div>
 
-        <!-- Search -->
+        <!-- ================= STATISTICS ================= -->
 
-        <div class="search-box">
+        <div class="customer-stats">
 
-            <input
-                    type="text"
-                    placeholder="Search Customer by Email">
+            <div class="stat-card">
 
-            <button>
+                <i class="fa-solid fa-users"></i>
 
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <div>
 
-            </button>
+                    <h3 th:text="${#lists.size(customers)}">0</h3>
+
+                    <p>Total Customers</p>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-user-check"></i>
+
+                <div>
+
+                    <h3 th:text="${#lists.size(customers)}">0</h3>
+
+                    <p>Active Customers</p>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-envelope-circle-check"></i>
+
+                <div>
+
+                    <h3 th:text="${#lists.size(customers)}">0</h3>
+
+                    <p>Registered Emails</p>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <!-- Table -->
+        <!-- ================= SEARCH ================= -->
 
-        <div class="table-container">
+        <div class="search-wrapper">
 
-            <table>
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                    type="text"
+                    placeholder="Search customer by name, email or phone">
+
+        </div>
+
+        <!-- ================= TABLE ================= -->
+
+        <div class="table-card">
+
+            <table class="customer-table">
 
                 <thead>
 
@@ -89,6 +167,8 @@
 
                     <th>Address</th>
 
+                    <th>Status</th>
+
                     <th>Actions</th>
 
                 </tr>
@@ -96,6 +176,20 @@
                 </thead>
 
                 <tbody>
+
+                <tr th:if="${#lists.isEmpty(customers)}">
+
+                    <td colspan="8" class="empty-table">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <h3>No Customers Found</h3>
+
+                        <p>Add your first customer to begin.</p>
+
+                    </td>
+
+                </tr>
 
                 <tr th:each="customer : ${customers}">
 
@@ -113,13 +207,25 @@
 
                     <td>
 
-                        <button class="edit-btn">
+                        <span class="status active">
+
+                            <i class="fa-solid fa-circle"></i>
+
+                            Active
+
+                        </span>
+
+                    </td>
+
+                    <td class="action-buttons">
+
+                        <button class="edit-btn" title="Edit Customer">
 
                             <i class="fa-solid fa-pen"></i>
 
                         </button>
 
-                        <button class="delete-btn">
+                        <button class="delete-btn" title="Delete Customer">
 
                             <i class="fa-solid fa-trash"></i>
 
@@ -132,6 +238,19 @@
                 </tbody>
 
             </table>
+
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+
+        <div class="page-footer">
+
+            <p>
+
+                © 2026 VaultX Bank Management System |
+                Developed using Spring Boot & Thymeleaf
+
+            </p>
 
         </div>
 
